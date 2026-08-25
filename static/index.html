@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraksha AI — Digital Public Safety Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="relative min-h-screen flex flex-col overflow-x-hidden bg-[#0A0D14] text-slate-200 selection:bg-blue-500/30 selection:text-white">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl"></div>
+    <div class="absolute top-24 -right-24 h-80 w-80 rounded-full bg-rose-500/10 blur-3xl"></div>
+    <div class="absolute bottom-[-8rem] left-[-6rem] h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25"></div>
+  </div>
+
+  <!-- Shared Top Navigation Bar -->
+  <nav class="sticky top-0 z-50 border-b border-white/10 bg-[#0A0D14]/90 shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[72px] items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="grid h-11 w-11 place-items-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-bold text-white shadow-[0_0_30px_rgba(59,130,246,0.22)]">
+            S
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white font-display">SURAKSHA <span class="text-blue-400 font-mono text-base sm:text-lg">AI</span></h1>
+            <span class="text-[9px] font-mono text-slate-500 tracking-[0.28em] uppercase font-bold">Digital Public Safety Command</span>
+          </div>
+          <div class="hidden md:block h-5 w-px bg-white/10 mx-2"></div>
+          <span class="hidden md:inline-flex items-center rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold text-blue-200 shadow-sm">
+            v1.0.4-PROTOTYPE
+          </span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur">
+          <a href="index.html" class="rounded-full bg-blue-500/15 px-3 py-2 text-sm text-white shadow-sm">Dashboard</a>
+          <a href="scam.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Scam Checker</a>
+          <a href="note.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Banknote Vision</a>
+          <a href="map.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Hotspot Map</a>
+          <a href="report.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Guided Reporting</a>
+          <a href="audit.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Audit Trail</a>
+        </div>
+
+        <div class="tooltip tooltip-left" data-tip="System status is online.">
+          <div class="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 shadow-[0_0_20px_rgba(16,185,129,0.12)]">
+            <div class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.9)] animate-pulse"></div>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-[0.28em] font-bold">System Live: India Node</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">
+    <div class="mb-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-blue-200">
+            <span class="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
+            AI Cybersecurity Dashboard
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white font-display leading-tight">
+            Defend Against Scams & Digital Arrest Coercion
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm sm:text-base leading-7 text-slate-300">
+            Suraksha AI uses a multi-agent pipeline of detection, verification, reporting, and audit logging to protect citizens from predatory digital arrest threats, UPI fraud, and counterfeit currency.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3 lg:w-[28rem]">
+          <div class="card border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Platform Mode</span>
+              <p class="text-sm font-semibold text-white">Real-time public safety defense</p>
+            </div>
+          </div>
+          <div class="card border border-rose-400/15 bg-rose-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-rose-200">High Risk</span>
+              <p class="text-sm font-semibold text-white">Critical events highlighted in red</p>
+            </div>
+          </div>
+          <div class="card border border-emerald-400/15 bg-emerald-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Safe</span>
+              <p class="text-sm font-semibold text-white">Verified outcomes in green</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12 md:mb-16">
+      <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(37,99,235,0.16)]">
+        <div class="card-body gap-4 p-5 min-h-[140px]">
+          <div class="flex justify-between items-start">
+            <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Total Assessments</span>
+            <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">+14%</span>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-white" id="stat-total-scans">0</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-slate-500">
+              <span>Progress</span>
+              <span>Trend</span>
+            </div>
+            <progress class="progress progress-primary h-3 w-full rounded-full bg-white/10" value="65" max="100"></progress>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(239,68,68,0.16)]">
+        <div class="card-body gap-4 p-5 min-h-[140px]">
+          <div class="flex justify-between items-start">
+            <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-rose-300">Critical Flagged</span>
+            <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Critical</span>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-rose-400" id="stat-high-risk">0</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-slate-500">
+              <span>Severity</span>
+              <span>Watchlist</span>
+            </div>
+            <progress class="progress progress-error h-3 w-full rounded-full bg-white/10" value="22" max="100"></progress>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(245,158,11,0.16)]">
+        <div class="card-body gap-4 p-5 min-h-[140px]">
+          <div class="flex justify-between items-start">
+            <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-amber-300">Currency Checked</span>
+            <span class="badge badge-warning badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">98.2%</span>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-amber-300" id="stat-notes-checked">0</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-slate-500">
+              <span>Coverage</span>
+              <span>Inspection</span>
+            </div>
+            <progress class="progress progress-warning h-3 w-full rounded-full bg-white/10" value="45" max="100"></progress>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(16,185,129,0.16)]">
+        <div class="card-body gap-4 p-5 min-h-[140px]">
+          <div class="flex justify-between items-start">
+            <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-300">Safe Verified</span>
+            <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Secure</span>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-emerald-400" id="stat-low-risk">0</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-slate-500">
+              <span>Protection</span>
+              <span>Clearance</span>
+            </div>
+            <progress class="progress progress-success h-3 w-full rounded-full bg-white/10" value="88" max="100"></progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Tools Bento Grid -->
+    <div class="flex items-center justify-between gap-3 mb-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight uppercase font-display flex items-center gap-2">
+        <i data-lucide="layout-grid" class="h-5 w-5 text-blue-400"></i>
+        Platform Security Suites
+      </h2>
+      <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Clickable modules</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+      <a href="scam.html" class="card border border-blue-400/15 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:shadow-[0_24px_70px_rgba(59,130,246,0.16)]">
+        <div class="card-body p-6 md:p-8 flex flex-col justify-between h-full">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="grid h-12 w-12 place-items-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-blue-300 shadow-sm">
+                <i data-lucide="message-square-warning" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight font-display">Scam Message Checker</h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">AI Triage</span>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-7 mb-6">
+              Paste suspicious WhatsApp text, spam call transcripts, or courier messages. The platform processes them through the double-agent verification pipeline to detect digital arrest coercion and impersonation patterns.
+            </p>
+          </div>
+          <div class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-blue-600 to-cyan-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(37,99,235,0.35)] transition-all duration-300 hover:-translate-y-0.5 justify-between">
+            Start New Analysis <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="note.html" class="card border border-amber-400/15 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30 hover:shadow-[0_24px_70px_rgba(245,158,11,0.16)]">
+        <div class="card-body p-6 md:p-8 flex flex-col justify-between h-full">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="grid h-12 w-12 place-items-center rounded-2xl border border-amber-400/20 bg-amber-500/10 text-amber-300 shadow-sm">
+                <i data-lucide="scan-eye" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight font-display">Note Authenticator</h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-amber-200 border-amber-400/20 bg-amber-500/10">Vision AI</span>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-7 mb-6">
+              Upload a suspicious Rs. 500 bank note. The system runs character extraction on serial numbers, checks currency layouts, and validates security thread markings against counterfeit patterns.
+            </p>
+          </div>
+          <div class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-amber-600 to-blue-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(217,119,6,0.28)] transition-all duration-300 hover:-translate-y-0.5 justify-between">
+            Upload Note Image <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="map.html" class="card border border-emerald-400/15 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/30 hover:shadow-[0_24px_70px_rgba(16,185,129,0.16)]">
+        <div class="card-body p-6 md:p-8 flex flex-col justify-between h-full">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="grid h-12 w-12 place-items-center rounded-2xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-300 shadow-sm">
+                <i data-lucide="map" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight font-display">Regional Threat Map</h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-emerald-200 border-emerald-400/20 bg-emerald-500/10">Geospatial</span>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-7 mb-6">
+              Explore cybercrime hubs across Indian states. Visualize circular markers color-coded by fraud category and hotspot risk based on public security records.
+            </p>
+          </div>
+          <div class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-emerald-600 to-cyan-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-0.5 justify-between">
+            View Geospatial Map <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="report.html" class="card border border-rose-400/15 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-rose-400/30 hover:shadow-[0_24px_70px_rgba(239,68,68,0.16)]">
+        <div class="card-body p-6 md:p-8 flex flex-col justify-between h-full">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="grid h-12 w-12 place-items-center rounded-2xl border border-rose-400/20 bg-rose-500/10 text-rose-300 shadow-sm">
+                <i data-lucide="file-text" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight font-display">Guided Fraud Reporting</h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-rose-200 border-rose-400/20 bg-rose-500/10">Emergency Flow</span>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-7 mb-6">
+              Generate immediate action blueprints, lock banking access, and list required evidence items for victims who need to report cybercrime quickly and correctly.
+            </p>
+          </div>
+          <div class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-rose-600 to-blue-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(239,68,68,0.28)] transition-all duration-300 hover:-translate-y-0.5 justify-between">
+            Generate Action Blueprint <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="audit.html" class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:shadow-[0_24px_70px_rgba(59,130,246,0.16)] md:col-span-2">
+        <div class="card-body p-6 md:p-8 flex flex-col justify-between h-full">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="grid h-12 w-12 place-items-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-blue-300 shadow-sm">
+                <i data-lucide="shield-check" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight font-display">Audit Trail</h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">Integrity log</span>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-7 mb-6">
+              Review the immutable investigation ledger that captures pipeline runs, classifications, and confidence thresholds for every Suraksha AI decision.
+            </p>
+          </div>
+          <div class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-blue-600 to-cyan-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(37,99,235,0.35)] transition-all duration-300 hover:-translate-y-0.5 justify-between w-full sm:w-auto self-start">
+            Inspect Audit Log <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2 mb-16">
+      <div class="card border border-white/10 bg-slate-950/45 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+        <div class="card-body gap-5 p-6 sm:p-7">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-xl font-bold text-white font-display flex items-center gap-2 uppercase tracking-[0.24em]">
+              <i data-lucide="activity" class="h-5 w-5 text-blue-300"></i>
+              AI System Status
+            </h2>
+            <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Operational</span>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-sm text-slate-300">
+              <span>Pipeline health</span>
+              <span class="font-mono text-emerald-300">99.8%</span>
+            </div>
+            <progress class="progress progress-success h-3 w-full rounded-full bg-white/10" value="99" max="100"></progress>
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="alert border border-blue-400/15 bg-blue-500/10 text-blue-100 shadow-sm">
+                <i data-lucide="shield-check" class="h-4 w-4"></i>
+                <span class="text-xs">Detection ready</span>
+              </div>
+              <div class="alert border border-amber-400/15 bg-amber-500/10 text-amber-100 shadow-sm">
+                <i data-lucide="scan-face" class="h-4 w-4"></i>
+                <span class="text-xs">Verification ready</span>
+              </div>
+              <div class="alert border border-emerald-400/15 bg-emerald-500/10 text-emerald-100 shadow-sm">
+                <i data-lucide="badge-check" class="h-4 w-4"></i>
+                <span class="text-xs">Reporting ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+        <div class="card-body gap-5 p-6 sm:p-7">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-xl font-bold text-white font-display flex items-center gap-2 uppercase tracking-[0.24em]">
+              <i data-lucide="layout-grid" class="h-5 w-5 text-blue-300"></i>
+              Platform Overview
+            </h2>
+            <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Hackathon ready</span>
+          </div>
+          <p class="text-sm leading-7 text-slate-300">
+            Suraksha AI unifies scam detection, banknote verification, hotspot intelligence, guided reporting, and immutable audit logging into a single cyber-security workflow for public safety investigations.
+          </p>
+          <div class="divider divider-info before:bg-white/10 after:bg-white/10 text-slate-400 uppercase tracking-[0.28em] text-[10px] font-mono">Quick Actions</div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="scam.html" class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-blue-600 to-cyan-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(37,99,235,0.35)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto">Open Scam Checker</a>
+            <a href="report.html" class="btn btn-outline rounded-2xl border-white/10 bg-white/5 text-slate-200 hover:bg-white/10 hover:border-white/20 px-6 text-xs font-bold uppercase tracking-[0.28em] w-full sm:w-auto">Start Reporting</a>
+          </div>
+          <div class="alert border border-blue-400/15 bg-blue-500/10 text-blue-100 shadow-sm">
+            <span class="loading loading-spinner loading-sm text-blue-400"></span>
+            <span class="text-xs">Dashboard counters update from the existing JavaScript without any change to behavior.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="border-t border-white/10 bg-[#0A0D14]/90 py-6 mt-auto backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-mono tracking-[0.22em] uppercase">
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        <span>AUDIT LOG: [ACTIVE]</span>
+        <span>AUTH AGENTS: [4/4 READY]</span>
+        <span>LATENCY: 12ms</span>
+      </div>
+      <div class="text-slate-400">2026 © SURAKSHA AI • PUBLIC SAFETY PLATFORM</div>
+    </div>
+  </footer>
+
+  <!-- Frontend script loading -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

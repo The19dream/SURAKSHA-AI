@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybercrime Hotspots Map — Suraksha AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Leaflet.js CDN CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Leaflet.js CDN Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="relative min-h-screen flex flex-col overflow-x-hidden bg-[#0A0D14] text-slate-200 selection:bg-blue-500/30 selection:text-white">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl"></div>
+    <div class="absolute top-24 -right-24 h-80 w-80 rounded-full bg-rose-500/10 blur-3xl"></div>
+    <div class="absolute bottom-[-8rem] left-[-6rem] h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 border-b border-white/10 bg-[#0A0D14]/90 shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[72px] items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="grid h-11 w-11 place-items-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-bold text-white shadow-[0_0_30px_rgba(59,130,246,0.22)]">
+            S
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white font-display">SURAKSHA <span class="text-blue-400 font-mono text-base sm:text-lg">AI</span></h1>
+            <span class="text-[9px] font-mono text-slate-500 tracking-[0.28em] uppercase font-bold">Digital Public Safety Command</span>
+          </div>
+          <div class="hidden md:block h-5 w-px bg-white/10 mx-2"></div>
+          <span class="hidden md:inline-flex items-center rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold text-blue-200 shadow-sm">
+            v1.0.4-PROTOTYPE
+          </span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur">
+          <a href="index.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Dashboard</a>
+          <a href="scam.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Scam Checker</a>
+          <a href="note.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Banknote Vision</a>
+          <a href="map.html" class="rounded-full bg-blue-500/15 px-3 py-2 text-sm text-white shadow-sm">Hotspot Map</a>
+          <a href="report.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Guided Reporting</a>
+          <a href="audit.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Audit Trail</a>
+        </div>
+
+        <div class="tooltip tooltip-left" data-tip="Live orchestration channel is online.">
+          <div class="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 shadow-[0_0_20px_rgba(16,185,129,0.12)]">
+            <div class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.9)] animate-pulse"></div>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-[0.28em] font-bold">Geospatial Server Active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Layout Grid -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">
+    <div class="mb-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-blue-200">
+            <span class="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
+            AI Cybersecurity Dashboard
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white font-display leading-tight">
+            Cybercrime Hotspots Map
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm sm:text-base leading-7 text-slate-300">
+            Geospatial intelligence tracking fake telecom cells, phishing call centers, and counterfeit runs across Indian cities.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3 lg:w-[28rem]">
+          <div class="card border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Map Feed</span>
+              <p class="text-sm font-semibold text-white">Leaflet + OpenStreetMap live layer</p>
+            </div>
+          </div>
+          <div class="card border border-rose-400/15 bg-rose-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-rose-200">High Risk</span>
+              <p class="text-sm font-semibold text-white">Red hotspots and critical clusters</p>
+            </div>
+          </div>
+          <div class="card border border-emerald-400/15 bg-emerald-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Safe/Low Risk</span>
+              <p class="text-sm font-semibold text-white">Emerald markers and safer regions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+      <!-- Left Column -->
+      <div class="xl:col-span-4 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+          <div class="card-body gap-5 p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white font-display">Threat Overview</h2>
+                <p class="mt-2 text-sm text-slate-300 leading-6">
+                  The map remains the primary focus, with hotspot context, filters, and live region intelligence arranged around the canvas.
+                </p>
+              </div>
+              <div class="tooltip tooltip-left" data-tip="Regional intelligence updates are available through the existing map feed.">
+                <span class="badge badge-primary badge-outline rounded-full px-3 py-3 font-mono uppercase tracking-[0.24em] text-[10px]">Live Feed</span>
+              </div>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 xl:grid-cols-2">
+              <div class="stats border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="stat p-4">
+                  <div class="stat-title text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Active Hotspots</div>
+                  <div class="stat-value text-2xl text-white">24</div>
+                  <div class="stat-desc text-rose-300">+4 from last scan</div>
+                </div>
+              </div>
+              <div class="stats border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="stat p-4">
+                  <div class="stat-title text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Risk Score</div>
+                  <div class="stat-value text-2xl text-white">87%</div>
+                  <div class="stat-desc text-amber-300">Mixed severity cluster</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Indicators / Legends -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Risk Legend</h3>
+                  <span class="badge badge-ghost rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-400">Severity</span>
+                </div>
+                <div class="grid gap-2">
+                  <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200 transition-all hover:bg-white/5">
+                    <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(248,113,113,0.8)]"></span> Digital Arrest</span>
+                    <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">High Risk</span>
+                  </div>
+                  <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200 transition-all hover:bg-white/5">
+                    <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)]"></span> Fake Banknotes</span>
+                    <span class="badge badge-warning badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Medium</span>
+                  </div>
+                  <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200 transition-all hover:bg-white/5">
+                    <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span> UPI / Phishing</span>
+                    <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Safe</span>
+                  </div>
+                  <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200 transition-all hover:bg-white/5">
+                    <span class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.8)]"></span> Sextortion</span>
+                    <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Special</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Filter Controls</h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">State / Type / Risk</span>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
+                  <div class="form-control">
+                    <label class="label"><span class="label-text text-xs uppercase tracking-[0.22em] text-slate-500 font-mono">State</span></label>
+                    <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                      <option>All States</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label class="label"><span class="label-text text-xs uppercase tracking-[0.22em] text-slate-500 font-mono">Fraud Type</span></label>
+                    <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                      <option>All Types</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label class="label"><span class="label-text text-xs uppercase tracking-[0.22em] text-slate-500 font-mono">Risk Level</span></label>
+                    <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                      <option>All Risk</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent hotspot activity panel -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Recent Hotspot Activity</h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Latest</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="alert border border-rose-400/15 bg-rose-500/10 text-rose-100 shadow-sm">
+                    <i data-lucide="trending-up" class="h-4 w-4"></i>
+                    <span class="text-xs">Delhi NCR cluster expanded near telecom spoofing corridor.</span>
+                  </div>
+                  <div class="alert border border-amber-400/15 bg-amber-500/10 text-amber-100 shadow-sm">
+                    <i data-lucide="map-pinned" class="h-4 w-4"></i>
+                    <span class="text-xs">Mumbai counterfeit network shows medium-risk density growth.</span>
+                  </div>
+                  <div class="alert border border-emerald-400/15 bg-emerald-500/10 text-emerald-100 shadow-sm">
+                    <i data-lucide="shield-check" class="h-4 w-4"></i>
+                    <span class="text-xs">Bengaluru low-risk region remains stable after latest audit.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Selected hotspot information card -->
+            <div class="card border border-white/10 bg-white/5 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-sm font-bold text-white font-display flex items-center gap-2">
+                    <i data-lucide="crosshair" class="h-4 w-4 text-blue-300"></i>
+                    Selected Hotspot
+                  </h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">Details</span>
+                </div>
+                <p class="text-sm leading-7 text-slate-300">Select a point on the map to inspect the current threat pattern, case summary, and nearby enforcement context.</p>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
+                    <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Threat Category</div>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                      <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">High Risk</span>
+                      <span class="badge badge-warning badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Fraud</span>
+                    </div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
+                    <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Loading State</div>
+                    <div class="mt-3 flex items-center gap-3 text-sm text-slate-300">
+                      <span class="loading loading-spinner loading-sm text-blue-400"></span>
+                      Map intelligence feed ready
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Static Notice -->
+            <div class="alert border border-blue-400/15 bg-blue-500/10 text-blue-100 shadow-sm">
+              <i data-lucide="info" class="h-5 w-5"></i>
+              <div class="text-xs leading-6 text-blue-50/80">
+                <strong class="text-blue-100">Hotspot Mapping Intelligence:</strong> Hotspots are based on compiled public crime registries, cyber forensics incident reviews, and mock hackathon samples. Live security networks assist proactive call blocking and regional awareness.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="xl:col-span-8 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl overflow-hidden">
+          <div class="card-body gap-4 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white font-display">Geospatial Threat Canvas</h2>
+                <p class="mt-2 text-sm text-slate-300 leading-6">The interactive map remains the primary focus and renders inside the existing Leaflet mount point.</p>
+              </div>
+              <div class="tooltip tooltip-left" data-tip="Map is rendered by the existing Leaflet/OpenStreetMap code.">
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-200 border-white/10 bg-white/5">Leaflet</span>
+              </div>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Map Load</div>
+                  <div class="mt-3 flex items-center gap-3 text-sm text-slate-200"><span class="loading loading-spinner loading-sm text-blue-400"></span> Initializing tile layers</div>
+                </div>
+              </div>
+              <div class="card border border-rose-400/15 bg-rose-500/10 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-rose-200">High Risk</div>
+                  <div class="mt-2 text-sm font-semibold text-white">Critical hotspots</div>
+                </div>
+              </div>
+              <div class="card border border-emerald-400/15 bg-emerald-500/10 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Low Risk</div>
+                  <div class="mt-2 text-sm font-semibold text-white">Safer regions and quiet zones</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Canvas (Leaflet Container) -->
+            <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0A0D14] shadow-[0_18px_60px_rgba(2,6,23,0.35)]">
+              <div class="absolute inset-0 pointer-events-none z-10">
+                <div class="absolute left-4 top-4 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-mono uppercase tracking-[0.28em] text-slate-200 shadow-lg backdrop-blur">Live Map</div>
+                <div class="absolute right-4 top-4 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-2 text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200 shadow-lg backdrop-blur">Data Stream Active</div>
+                <div class="absolute bottom-4 left-4 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-mono uppercase tracking-[0.28em] text-slate-300 shadow-lg backdrop-blur">Use zoom and markers</div>
+              </div>
+              <div class="absolute inset-x-0 top-0 z-0 h-20 bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+                <div class="flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-xs text-slate-300 shadow-xl backdrop-blur">
+                  <span class="loading loading-spinner loading-sm text-blue-400"></span>
+                  Loading map intelligence feed
+                </div>
+              </div>
+              <div class="relative z-20 h-[34rem] md:h-[42rem] lg:h-[46rem]" id="map-canvas">
+                <!-- Leaflet loads the map dynamically inside this div -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+            <div class="card-body gap-4 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-sm font-bold text-white font-display flex items-center gap-2">
+                  <i data-lucide="badge-alert" class="h-4 w-4 text-rose-300"></i>
+                  Threat Categories
+                </h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Badges</span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Digital Arrest</span>
+                <span class="badge badge-warning badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Fake Banknotes</span>
+                <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">UPI / Phishing</span>
+                <span class="badge badge-secondary badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Sextortion</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+            <div class="card-body gap-4 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-sm font-bold text-white font-display flex items-center gap-2">
+                  <i data-lucide="activity" class="h-4 w-4 text-blue-300"></i>
+                  Map Activity
+                </h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">Trending</span>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200">
+                  <span>Hotspot clusters</span>
+                  <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">24</span>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-200">
+                  <span>Low-risk areas</span>
+                  <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">11</span>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">
+                    <span>Coverage</span>
+                    <span>Regional visibility</span>
+                  </div>
+                  <progress class="progress progress-primary h-3 w-full rounded-full bg-white/10" value="78" max="100"></progress>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert border border-blue-400/15 bg-blue-500/10 text-blue-100 shadow-sm">
+          <i data-lucide="info" class="h-5 w-5"></i>
+          <div class="text-xs leading-6 text-blue-50/80">
+            <strong class="text-blue-100">Hotspot Mapping Intelligence:</strong> Hotspots are plotted from compiled public registries, cyber forensics reviews, and mock hackathon data. The map component below continues to render through the existing Leaflet initialization logic.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="border-t border-white/10 bg-[#0A0D14]/90 py-6 mt-auto backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-mono tracking-[0.22em] uppercase">
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        <span>AUDIT LOG: [ACTIVE]</span>
+        <span>AUTH AGENTS: [4/4 READY]</span>
+        <span>LATENCY: 12ms</span>
+      </div>
+      <div class="text-slate-400">2026 © SURAKSHA AI • PUBLIC SAFETY PLATFORM</div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

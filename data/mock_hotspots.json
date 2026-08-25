@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "city": "Jamtara, Jharkhand",
+    "lat": 24.1189,
+    "lng": 86.8021,
+    "type": "UPI Fraud",
+    "date": "2026-07-14",
+    "description": "Phishing farm disguised as official bank customer support. Victims defrauded of KYC details under threat of card block."
+  },
+  {
+    "id": 2,
+    "city": "Mewat (Bharatpur), Rajasthan",
+    "lat": 27.5321,
+    "lng": 77.2911,
+    "type": "Sextortion scam",
+    "date": "2026-07-12",
+    "description": "Organized gang operating fake social media profiles to blackmail citizens with altered video recordings."
+  },
+  {
+    "id": 3,
+    "city": "Bengaluru, Karnataka",
+    "lat": 12.9716,
+    "lng": 77.5946,
+    "type": "Digital Arrest",
+    "date": "2026-07-15",
+    "description": "Senior citizen coercively kept under 24-hour Skype 'digital arrest' by suspects impersonating CBI officers."
+  },
+  {
+    "id": 4,
+    "city": "Gurugram, Haryana",
+    "lat": 28.4595,
+    "lng": 77.0266,
+    "type": "Part-Time Job Fraud",
+    "date": "2026-07-13",
+    "description": "Telegram recruitment scam offering payments for liking videos, leading to heavy deposits in virtual accounts."
+  },
+  {
+    "id": 5,
+    "city": "Noida, Uttar Pradesh",
+    "lat": 28.5355,
+    "lng": 77.3910,
+    "type": "UPI Fraud",
+    "date": "2026-07-11",
+    "description": "Fake QR code scam targeted at OLX sellers pretending to send payments but instead debiting balances."
+  },
+  {
+    "id": 6,
+    "city": "Mumbai, Maharashtra",
+    "lat": 19.0760,
+    "lng": 72.8777,
+    "type": "Digital Arrest",
+    "date": "2026-07-15",
+    "description": "Suspects pretending to be Mumbai Crime Branch threatened victim with customs clearance charges for illegal drugs."
+  },
+  {
+    "id": 7,
+    "city": "Hyderabad, Telangana",
+    "lat": 17.3850,
+    "lng": 78.4867,
+    "type": "Counterfeit Note",
+    "date": "2026-07-10",
+    "description": "Circulation of high-quality fake Rs. 500 notes intercepted at local wholesale fruit market."
+  },
+  {
+    "id": 8,
+    "city": "Kolkata, West Bengal",
+    "lat": 22.5726,
+    "lng": 88.3639,
+    "type": "Electricity Bill Scam",
+    "date": "2026-07-14",
+    "description": "Urgent SMS sent threatening power disconnection, leading to download of malicious control app (AnyDesk)."
+  },
+  {
+    "id": 9,
+    "city": "Pune, Maharashtra",
+    "lat": 18.5204,
+    "lng": 73.8567,
+    "type": "UPI Fraud",
+    "date": "2026-07-09",
+    "description": "Aadhaar Enabled Payment System (AePS) biometric cloning leading to unauthorized withdrawals."
+  },
+  {
+    "id": 10,
+    "city": "Ahmedabad, Gujarat",
+    "lat": 23.0225,
+    "lng": 72.5714,
+    "type": "Part-Time Job Fraud",
+    "date": "2026-07-08",
+    "description": "Fake crypto investment task platforms scamming remote work applicants of initial deposits."
+  },
+  {
+    "id": 11,
+    "city": "Chennai, Tamil Nadu",
+    "lat": 13.0827,
+    "lng": 80.2707,
+    "type": "Digital Arrest",
+    "date": "2026-07-07",
+    "description": "Fake TRAI officer alert threatening to disconnect all mobile numbers unless victim cooperated with customs."
+  },
+  {
+    "id": 12,
+    "city": "Jaipur, Rajasthan",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "type": "Counterfeit Note",
+    "date": "2026-07-06",
+    "description": "Fake banknote scanner detected fake Rs. 200 and Rs. 500 currency batches with identical serial sequences."
+  },
+  {
+    "id": 13,
+    "city": "Lucknow, Uttar Pradesh",
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "type": "Electricity Bill Scam",
+    "date": "2026-07-05",
+    "description": "Suspect masquerading as UPPCL billing desk extracted netbanking PINs via fake support call."
+  },
+  {
+    "id": 14,
+    "city": "Patna, Bihar",
+    "lat": 25.5941,
+    "lng": 85.1376,
+    "type": "UPI Fraud",
+    "date": "2026-07-04",
+    "description": "Fake government subsidy / KBC lottery portal stealing UPI PINs via credential harvest pages."
+  },
+  {
+    "id": 15,
+    "city": "Ranchi, Jharkhand",
+    "lat": 23.3441,
+    "lng": 85.3096,
+    "type": "Sextortion scam",
+    "date": "2026-07-03",
+    "description": "Impersonators of cyber cell demanding money to delete fake online explicit clips of the victim."
+  },
+  {
+    "id": 16,
+    "city": "Bhopal, Madhya Pradesh",
+    "lat": 23.2599,
+    "lng": 77.4126,
+    "type": "Part-Time Job Fraud",
+    "date": "2026-07-02",
+    "description": "Fraudsters representing a fake digital marketing agency lured job seekers into mock rating scams."
+  },
+  {
+    "id": 17,
+    "city": "Dehradun, Uttarakhand",
+    "lat": 30.3165,
+    "lng": 78.0322,
+    "type": "Counterfeit Note",
+    "date": "2026-07-01",
+    "description": "Counterfeit INR 500 notes seized from a grocery supplier. Lacked security thread shift and paper watermark."
+  },
+  {
+    "id": 18,
+    "city": "Guwahati, Assam",
+    "lat": 26.1445,
+    "lng": 91.7362,
+    "type": "UPI Fraud",
+    "date": "2026-06-30",
+    "description": "SIM swap fraud leading to takeover of bank-registered mobile numbers and subsequent funds draining."
+  },
+  {
+    "id": 19,
+    "city": "Srinagar, Jammu and Kashmir",
+    "lat": 34.0837,
+    "lng": 74.7973,
+    "type": "Digital Arrest",
+    "date": "2026-06-29",
+    "description": "Victim blackmailed with fabricated money laundering charges by Skype impostors posing as police officers."
+  },
+  {
+    "id": 20,
+    "city": "Bhubaneswar, Odisha",
+    "lat": 20.2961,
+    "lng": 85.8245,
+    "type": "Electricity Bill Scam",
+    "date": "2026-06-28",
+    "description": "Fake SMS blast targeting commercial shopkeepers with power cuts unless immediate payments were made."
+  },
+  {
+    "id": 21,
+    "city": "Visakhapatnam, Andhra Pradesh",
+    "lat": 17.6868,
+    "lng": 83.2185,
+    "type": "UPI Fraud",
+    "date": "2026-06-27",
+    "description": "Impersonation of army personnel buying home furniture online, tricking sellers into clicking 'receive' request codes."
+  },
+  {
+    "id": 22,
+    "city": "Kochi, Kerala",
+    "lat": 9.9312,
+    "lng": 76.2673,
+    "type": "Part-Time Job Fraud",
+    "date": "2026-06-26",
+    "description": "Work-from-home data entry scam demanding security deposits for legal agreements before releasing earnings."
+  },
+  {
+    "id": 23,
+    "city": "Chandigarh",
+    "lat": 30.7333,
+    "lng": 76.7794,
+    "type": "Digital Arrest",
+    "date": "2026-06-25",
+    "description": "Victim kept on call for 6 hours under CBI threat of passport confiscation, losing savings to safe accounts."
+  },
+  {
+    "id": 24,
+    "city": "Vijayawada, Andhra Pradesh",
+    "lat": 16.5062,
+    "lng": 80.6480,
+    "type": "Counterfeit Note",
+    "date": "2026-06-24",
+    "description": "Suspects caught depositing duplicate currency notes at high-volume cash deposit machine (CDM) kiosks."
+  },
+  {
+    "id": 25,
+    "city": "Surat, Gujarat",
+    "lat": 21.1702,
+    "lng": 72.8311,
+    "type": "UPI Fraud",
+    "date": "2026-06-23",
+    "description": "Texting fraud using custom UPI dynamic codes requesting immediate medical emergency aid on behalf of friends."
+  }
+]

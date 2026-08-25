@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "label": "Digital Arrest (CBI Impersonation)",
+    "type": "scam",
+    "text": "This is Officer Sanjay Dutt from the CBI Headquarters, Delhi. A FedEx parcel sent in your name to Taiwan containing 5 expired passports, 14 credit cards, and 200 grams of MDMA (narcotics) has been intercepted by Customs. Your Aadhaar number 4291-XXXX-XXXX is linked to a money laundering case. A non-bailable arrest warrant has been issued by the Supreme Court of India. You must immediately connect via Skype video call and stay on camera for 'digital custody' during investigation. Do not contact anyone or disclose this under the Official Secrets Act."
+  },
+  {
+    "id": 2,
+    "label": "Urgent Electricity Disconnection",
+    "type": "scam",
+    "text": "URGENT NOTICE: Dear customer, your electricity connection will be disconnected tonight at 9:30 PM from the electricity office because your previous month's bill was unpaid. Please immediately contact our electricity officer Mr. Sharma at 98451-22910. Do not wait, call immediately to clear your bill and update your details on the power server to avoid permanent power cut."
+  },
+  {
+    "id": 3,
+    "label": "Part-Time Job UPI Hook",
+    "type": "scam",
+    "text": "Congratulations! You have been selected for a flexible part-time online job from home. Earn Rs. 3000 to Rs. 8000 daily by simply liking YouTube videos and rating hotels on Google. No experience required. We pay Rs. 150 immediately as a welcome bonus into your UPI wallet. Please add our Telegram channel @IndiaPartTimeEasyJobs and contact our HR manager Priya to receive your first task. Limited seats available, apply now!"
+  },
+  {
+    "id": 4,
+    "label": "Genuine Bank Transaction Alert",
+    "type": "genuine",
+    "text": "Dear Customer, your Union Bank of India account XX8941 has been credited with INR 12,500.00 on 15-07-2026 14:22:10 via NEFT from transfer ref: NEFTN22910384. If this transaction was not authorized by you, please report to the grievance cell immediately by calling our official toll-free helpline or texting BLOCK to 56767."
+  },
+  {
+    "id": 5,
+    "label": "Genuine Appointment Reminder",
+    "type": "genuine",
+    "text": "Reminder: Your appointment with Dr. Aditi Sen at Apollo Clinics, Bengaluru is confirmed for tomorrow, Thursday, 17th July 2026 at 11:30 AM. Please arrive 15 minutes prior to complete registration. For rescheduling, please click the link: https://www.apolloclinics.in/my-booking/89420 or call 1800-425-1066. Thank you for choosing Apollo."
+  }
+]

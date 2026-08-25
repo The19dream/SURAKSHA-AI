@@ -1,0 +1,154 @@
+/* Custom CSS for Suraksha AI - Digital Public Safety Platform */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0A0D14; /* Deep technical slate black */
+  color: #cbd5e1; /* slate-300 */
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom glow borders and cards - Technical Dashboard / Data Grid styling */
+.cyber-card {
+  background-color: #151B28; /* Technical Slate background */
+  border: 1px solid #2D3748; /* Exact border color from mockup */
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+  border-color: #3b82f6; /* Blue-500 hover highlights */
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), 0 0 12px rgba(59, 130, 246, 0.15);
+}
+
+.cyber-card-active {
+  background-color: #0F172A;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.cyber-card-active:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+.cyber-card-warning {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+.cyber-card-warning:hover {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+/* Technical label style from design template */
+.tech-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b; /* slate-500 */
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Custom table design from theme */
+.tech-table th {
+  background-color: #0F172A;
+  color: #64748b;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #2D3748;
+}
+
+.tech-table td {
+  border-bottom: 1px solid #1E293B;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.tech-table tr:hover {
+  background-color: rgba(30, 41, 59, 0.4);
+}
+
+/* Pipeline Step Indicator */
+.pipeline-step {
+  transition: all 0.5s ease;
+}
+
+.pipeline-step.active {
+  color: #60a5fa;
+  border-color: #3b82f6;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.pipeline-step.success {
+  color: #34d399;
+  border-color: #10b981;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Pulse effects */
+@keyframes pulse-glow-red {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 1);
+  }
+}
+
+.pulse-red {
+  animation: pulse-glow-red 2s infinite;
+}
+
+@keyframes pulse-glow-blue {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+    border-color: rgba(59, 130, 246, 1);
+  }
+}
+
+.pulse-blue {
+  animation: pulse-glow-blue 2s infinite;
+}
+
+/* Leaflet Custom Style Override for Dark Theme */
+.leaflet-container {
+  background: #0f172a !important;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+}
+
+.leaflet-bar a {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+.leaflet-bar a:hover {
+  background-color: #334155 !important;
+}
+

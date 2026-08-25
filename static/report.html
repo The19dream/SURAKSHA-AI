@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guided Fraud Reporting — Suraksha AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="relative min-h-screen flex flex-col overflow-x-hidden bg-[#0A0D14] text-slate-200 selection:bg-blue-500/30 selection:text-white">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl"></div>
+    <div class="absolute top-24 -right-24 h-80 w-80 rounded-full bg-rose-500/10 blur-3xl"></div>
+    <div class="absolute bottom-[-8rem] left-[-6rem] h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 border-b border-white/10 bg-[#0A0D14]/90 shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[72px] items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="grid h-11 w-11 place-items-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-bold text-white shadow-[0_0_30px_rgba(59,130,246,0.22)]">
+            S
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white font-display">SURAKSHA <span class="text-blue-400 font-mono text-base sm:text-lg">AI</span></h1>
+            <span class="text-[9px] font-mono text-slate-500 tracking-[0.28em] uppercase font-bold">Digital Public Safety Command</span>
+          </div>
+          <div class="hidden md:block h-5 w-px bg-white/10 mx-2"></div>
+          <span class="hidden md:inline-flex items-center rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold text-blue-200 shadow-sm">
+            v1.0.4-PROTOTYPE
+          </span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur">
+          <a href="index.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Dashboard</a>
+          <a href="scam.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Scam Checker</a>
+          <a href="note.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Banknote Vision</a>
+          <a href="map.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Hotspot Map</a>
+          <a href="report.html" class="rounded-full bg-blue-500/15 px-3 py-2 text-sm text-white shadow-sm">Guided Reporting</a>
+          <a href="audit.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Audit Trail</a>
+        </div>
+
+        <div class="tooltip tooltip-left" data-tip="Emergency response routing is online.">
+          <div class="flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-2 shadow-[0_0_20px_rgba(239,68,68,0.12)]">
+            <div class="h-2.5 w-2.5 rounded-full bg-rose-400 shadow-[0_0_12px_rgba(248,113,113,0.9)] animate-pulse"></div>
+            <span class="text-[10px] font-mono text-rose-300 uppercase tracking-[0.28em] font-bold">Emergency Portal Sync</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Guided Reporting Blueprint Wizard -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">
+    <div class="mb-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-rose-200">
+            <span class="h-2 w-2 rounded-full bg-rose-400 shadow-[0_0_10px_rgba(248,113,113,0.8)]"></span>
+            Actionable Emergency Protocol
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white font-display leading-tight">
+            Guided Fraud Reporting & Containment
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm sm:text-base leading-7 text-slate-300">
+            Follow this immediate containment sequence to freeze funds, preserve evidence, and file the correct cybercrime report without losing the golden hour.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3 lg:w-[28rem]">
+          <div class="card border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Response Mode</span>
+              <p class="text-sm font-semibold text-white">Victim-guided reporting</p>
+            </div>
+          </div>
+          <div class="card border border-rose-400/15 bg-rose-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-rose-200">Emergency</span>
+              <p class="text-sm font-semibold text-white">Immediate action and freeze steps</p>
+            </div>
+          </div>
+          <div class="card border border-emerald-400/15 bg-emerald-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="card-body p-4">
+              <span class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Completed</span>
+              <p class="text-sm font-semibold text-white">Report filing and evidence logging</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+      <div class="xl:col-span-7 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+          <div class="card-body gap-5 p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white font-display">Report Intake</h2>
+                <p class="mt-2 text-sm text-slate-300 leading-6">
+                  Use this reporting assistant to document the incident, preserve evidence, and move through the official containment workflow.
+                </p>
+              </div>
+              <div class="tooltip tooltip-left" data-tip="Follow each step in order to maximize response speed.">
+                <span class="badge badge-primary badge-outline rounded-full px-3 py-3 font-mono uppercase tracking-[0.24em] text-[10px]">AI Guided</span>
+              </div>
+            </div>
+
+            <!-- Action Protocol Timeline -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-5 p-5 sm:p-6">
+                <div class="flex items-center justify-between gap-3">
+                  <h2 class="text-sm font-bold text-white font-display uppercase tracking-[0.28em] flex items-center gap-2">
+                    <i data-lucide="clock" class="h-4 w-4 text-rose-300"></i>
+                    Critical Containment Sequence
+                  </h2>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Step-by-step</span>
+                </div>
+                <ul class="timeline timeline-snap-icon timeline-vertical lg:timeline-horizontal w-full">
+                  <li>
+                    <div class="timeline-start text-[10px] font-mono uppercase tracking-[0.28em] text-rose-300">0 - 1 Hour</div>
+                    <div class="timeline-middle"><span class="bg-rose-500 text-white rounded-full h-8 w-8 grid place-items-center shadow-[0_0_16px_rgba(248,113,113,0.35)]"><i data-lucide="phone" class="h-4 w-4"></i></span></div>
+                    <div class="timeline-end timeline-box rounded-2xl border border-rose-400/15 bg-rose-500/10 p-4 shadow-sm">
+                      <h3 class="text-sm font-bold text-white font-display">Emergency Financial Freeze</h3>
+                      <p class="mt-2 text-xs leading-6 text-rose-50/80">Call <strong>1930</strong> immediately if you transferred money via UPI, netbanking, or card. Ask the bank to place an instant hold.</p>
+                      <a href="tel:1930" class="btn btn-error btn-sm mt-4 w-full rounded-2xl border-0 text-white shadow-sm">Dial National Helpline 1930</a>
+                    </div>
+                    <hr />
+                  </li>
+                  <li>
+                    <hr />
+                    <div class="timeline-start text-[10px] font-mono uppercase tracking-[0.28em] text-amber-300">Within 2 Hours</div>
+                    <div class="timeline-middle"><span class="bg-amber-500 text-white rounded-full h-8 w-8 grid place-items-center shadow-[0_0_16px_rgba(251,191,36,0.35)]"><i data-lucide="banknote" class="h-4 w-4"></i></span></div>
+                    <div class="timeline-end timeline-box rounded-2xl border border-amber-400/15 bg-amber-500/10 p-4 shadow-sm">
+                      <h3 class="text-sm font-bold text-white font-display">Bank Access Lockdown</h3>
+                      <p class="mt-2 text-xs leading-6 text-amber-50/80">Contact your bank directly and request a lock on online banking, UPI registration, and active card transactions.</p>
+                      <div class="alert mt-4 border border-white/10 bg-slate-950/45 text-slate-200 shadow-sm">
+                        <i data-lucide="info" class="h-4 w-4 text-blue-300"></i>
+                        <span class="text-xs">Keep transaction reference IDs and time stamps handy.</span>
+                      </div>
+                    </div>
+                    <hr />
+                  </li>
+                  <li>
+                    <hr />
+                    <div class="timeline-start text-[10px] font-mono uppercase tracking-[0.28em] text-blue-300">Within 12 Hours</div>
+                    <div class="timeline-middle"><span class="bg-blue-500 text-white rounded-full h-8 w-8 grid place-items-center shadow-[0_0_16px_rgba(59,130,246,0.35)]"><i data-lucide="file-search" class="h-4 w-4"></i></span></div>
+                    <div class="timeline-end timeline-box rounded-2xl border border-white/10 bg-slate-950/45 p-4 shadow-sm">
+                      <h3 class="text-sm font-bold text-white font-display">Document Evidence</h3>
+                      <p class="mt-2 text-xs leading-6 text-slate-300">Collect screenshots, transcripts, bank statements, suspect numbers, and profile links before chats disappear.</p>
+                      <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Chat backup</span>
+                        <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Phone numbers</span>
+                        <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Debit receipts</span>
+                      </div>
+                    </div>
+                    <hr />
+                  </li>
+                  <li>
+                    <hr />
+                    <div class="timeline-start text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-300">Within 24 Hours</div>
+                    <div class="timeline-middle"><span class="bg-emerald-500 text-white rounded-full h-8 w-8 grid place-items-center shadow-[0_0_16px_rgba(52,211,153,0.35)]"><i data-lucide="shield-check" class="h-4 w-4"></i></span></div>
+                    <div class="timeline-end timeline-box rounded-2xl border border-emerald-400/15 bg-emerald-500/10 p-4 shadow-sm">
+                      <h3 class="text-sm font-bold text-white font-display">File Official Cyber Complaint</h3>
+                      <p class="mt-2 text-xs leading-6 text-emerald-50/80">Open the official portal and submit your screenshots and notes to register the formal cyber grievance.</p>
+                      <a href="https://www.cybercrime.gov.in" target="_blank" class="btn btn-success btn-sm mt-4 w-full rounded-2xl border-0 text-white shadow-sm">Open cybercrime.gov.in</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Recommended actions card -->
+            <div class="card border border-white/10 bg-white/5 shadow-sm">
+              <div class="card-body gap-4 p-5 sm:p-6">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-sm font-bold text-white font-display flex items-center gap-2 uppercase tracking-[0.24em]">
+                    <i data-lucide="shield-alert" class="h-4 w-4 text-rose-300"></i>
+                    Recommended Actions
+                  </h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-rose-200 border-rose-400/20 bg-rose-500/10">Emergency</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="alert border border-rose-400/15 bg-rose-500/10 text-rose-100 shadow-sm">
+                    <i data-lucide="triangle-alert" class="h-4 w-4"></i>
+                    <span class="text-xs">Do not continue communication with the suspect.</span>
+                  </div>
+                  <div class="alert border border-amber-400/15 bg-amber-500/10 text-amber-100 shadow-sm">
+                    <i data-lucide="lock" class="h-4 w-4"></i>
+                    <span class="text-xs">Change affected passwords and revoke unknown device access.</span>
+                  </div>
+                  <div class="alert border border-emerald-400/15 bg-emerald-500/10 text-emerald-100 shadow-sm">
+                    <i data-lucide="clipboard-list" class="h-4 w-4"></i>
+                    <span class="text-xs">Store all records in a single evidence folder for police and bank escalation.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success/Error alerts -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="alert border border-emerald-400/15 bg-emerald-500/10 text-emerald-100 shadow-sm">
+                <i data-lucide="check-circle-2" class="h-5 w-5"></i>
+                <div>
+                  <h4 class="text-sm font-bold uppercase tracking-[0.24em] font-mono">Completed</h4>
+                  <p class="text-xs text-emerald-50/80 mt-1">Report filed, evidence preserved, and bank contact completed.</p>
+                </div>
+              </div>
+              <div class="alert border border-rose-400/15 bg-rose-500/10 text-rose-100 shadow-sm">
+                <i data-lucide="x-circle" class="h-5 w-5"></i>
+                <div>
+                  <h4 class="text-sm font-bold uppercase tracking-[0.24em] font-mono">If Funds Are Still Moving</h4>
+                  <p class="text-xs text-rose-50/80 mt-1">Call 1930 again and re-open the complaint with updated transaction details.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xl:col-span-5 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+          <div class="card-body gap-5 p-6 sm:p-7">
+            <div class="flex items-center justify-between gap-3">
+              <h2 class="text-2xl font-bold tracking-tight text-white font-display">Incident Report Form</h2>
+              <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Victim Intake</span>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="form-control">
+                <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">Victim Name</span></label>
+                <input type="text" class="input input-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-100 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15" placeholder="Enter full name" />
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="form-control">
+                  <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">Phone Number</span></label>
+                  <input type="tel" class="input input-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-100 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15" placeholder="Mobile number" />
+                </div>
+                <div class="form-control">
+                  <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">Incident Type</span></label>
+                  <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                    <option>Digital Arrest</option>
+                    <option>UPI / Phishing</option>
+                    <option>Fake Banknotes</option>
+                    <option>Sextortion</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="form-control">
+                  <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">State</span></label>
+                  <input type="text" class="input input-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-100 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15" placeholder="State / UT" />
+                </div>
+                <div class="form-control">
+                  <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">City</span></label>
+                  <input type="text" class="input input-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-100 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15" placeholder="City / District" />
+                </div>
+              </div>
+              <div class="form-control">
+                <label class="label"><span class="label-text text-xs uppercase tracking-[0.24em] text-slate-500 font-mono">Incident Summary</span></label>
+                <textarea class="textarea textarea-bordered min-h-40 rounded-[1.25rem] border-white/10 bg-slate-950/60 text-slate-100 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15" placeholder="Briefly describe what happened, when it happened, and how the suspect contacted you."></textarea>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <button class="btn btn-primary rounded-2xl border-0 bg-gradient-to-r from-blue-600 to-cyan-500 px-6 text-xs font-bold uppercase tracking-[0.28em] text-white shadow-[0_16px_40px_rgba(37,99,235,0.35)] transition-all duration-300 hover:-translate-y-0.5">Generate Report Draft</button>
+              <button class="btn btn-outline rounded-2xl border-white/10 bg-white/5 text-slate-200 hover:bg-white/10 hover:border-white/20 text-xs font-bold uppercase tracking-[0.28em]">Save Draft</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+          <div class="card-body gap-5 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-sm font-bold text-white font-display flex items-center gap-2 uppercase tracking-[0.24em]">
+                <i data-lucide="file-text" class="h-4 w-4 text-blue-300"></i>
+                Evidence Upload Section
+              </h3>
+              <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-blue-200 border-blue-400/20 bg-blue-500/10">Files</span>
+            </div>
+            <div class="card border border-dashed border-white/15 bg-[#0A0D14]/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div class="card-body flex flex-col items-center justify-center gap-3 p-6 text-center">
+                <i data-lucide="upload-cloud" class="h-8 w-8 text-blue-300"></i>
+                <p class="text-sm font-semibold text-white font-display">Drag and drop screenshots, PDFs, or recordings</p>
+                <p class="text-xs text-slate-400">Organize evidence before filing the complaint or submitting bank escalation.</p>
+                <button class="btn btn-primary btn-sm rounded-2xl border-0 bg-blue-600 px-4 text-[10px] font-bold uppercase tracking-[0.28em] text-white">Browse Evidence</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="card border border-white/10 bg-white/5 shadow-sm">
+            <div class="card-body gap-3 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-sm font-bold text-white font-display flex items-center gap-2">
+                  <i data-lucide="phone-call" class="h-4 w-4 text-rose-300"></i>
+                  Emergency Contacts
+                </h3>
+                <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Emergency</span>
+              </div>
+              <div class="space-y-2 text-sm text-slate-200">
+                <a href="tel:1930" class="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                  <span>Cyber Helpline</span>
+                  <span class="font-mono text-rose-300">1930</span>
+                </a>
+                <a href="https://www.cybercrime.gov.in" target="_blank" class="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                  <span>Official Portal</span>
+                  <span class="font-mono text-blue-300">cybercrime.gov.in</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border border-white/10 bg-white/5 shadow-sm">
+            <div class="card-body gap-3 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-sm font-bold text-white font-display flex items-center gap-2">
+                  <i data-lucide="loader-circle" class="h-4 w-4 text-blue-300"></i>
+                  Loading State
+                </h3>
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Processing</span>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
+                <div class="flex items-center gap-3 text-sm text-slate-300">
+                  <span class="loading loading-spinner loading-sm text-blue-400"></span>
+                  Preparing a report draft and validating incident fields.
+                </div>
+                <div class="mt-4 space-y-2">
+                  <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">
+                    <span>Report readiness</span>
+                    <span>AI assistant</span>
+                  </div>
+                  <progress class="progress progress-primary h-3 w-full rounded-full bg-white/10" value="65" max="100"></progress>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidence Checklist Card -->
+        <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+          <div class="card-body gap-5 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-sm font-bold text-white font-display uppercase tracking-[0.24em] flex items-center gap-2">
+                <i data-lucide="folder-archive" class="h-4 w-4 text-blue-300"></i>
+                Evidence Catalog Guide
+              </h3>
+              <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">What to Collect</span>
+            </div>
+
+            <div class="grid gap-6 lg:grid-cols-2">
+              <div class="space-y-3 text-sm text-slate-300 leading-7">
+                <p>
+                  Your uploads become the primary defense when filing complaints with the police or on the national cybercrime portal. Organize them into tidy folders before submission.
+                </p>
+                <div class="space-y-2 text-xs text-slate-400">
+                  <div class="flex items-start gap-2 rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3"><span class="text-emerald-300 mt-0.5">•</span><span><strong class="text-slate-200">Phone records:</strong> Screenshots of logs displaying the suspect's country code.</span></div>
+                  <div class="flex items-start gap-2 rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3"><span class="text-emerald-300 mt-0.5">•</span><span><strong class="text-slate-200">Audio recordings:</strong> Call recorder logs of coercive phone or video chats.</span></div>
+                  <div class="flex items-start gap-2 rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3"><span class="text-emerald-300 mt-0.5">•</span><span><strong class="text-slate-200">PDF documents:</strong> Fake court notices, CBI arrest threats, or TRAI warnings.</span></div>
+                </div>
+              </div>
+
+              <div class="card border border-white/10 bg-white/5 shadow-sm">
+                <div class="card-body gap-4 p-5">
+                  <h4 class="text-xs font-bold text-white font-mono uppercase tracking-[0.28em]">Interactive Evidence Checklist</h4>
+                  <div class="space-y-3">
+                    <label class="flex items-start gap-3 text-xs text-slate-300 cursor-pointer rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                      <input type="checkbox" class="mt-1 checkbox checkbox-primary checkbox-sm" />
+                      <span>Screenshot of chat messages showing the suspect's mobile number</span>
+                    </label>
+                    <label class="flex items-start gap-3 text-xs text-slate-300 cursor-pointer rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                      <input type="checkbox" class="mt-1 checkbox checkbox-primary checkbox-sm" />
+                      <span>UPI reference IDs or bank SMS debit alert screenshots</span>
+                    </label>
+                    <label class="flex items-start gap-3 text-xs text-slate-300 cursor-pointer rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                      <input type="checkbox" class="mt-1 checkbox checkbox-primary checkbox-sm" />
+                      <span>PDF or graphic documents received, such as arrest threats or court notices</span>
+                    </label>
+                    <label class="flex items-start gap-3 text-xs text-slate-300 cursor-pointer rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 transition-all hover:bg-white/5">
+                      <input type="checkbox" class="mt-1 checkbox checkbox-primary checkbox-sm" />
+                      <span>Audio log files or Skype profile screenshots</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="border-t border-white/10 bg-[#0A0D14]/90 py-6 mt-auto backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-mono tracking-[0.22em] uppercase">
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        <span>AUDIT LOG: [ACTIVE]</span>
+        <span>AUTH AGENTS: [4/4 READY]</span>
+        <span>LATENCY: 12ms</span>
+      </div>
+      <div class="text-slate-400">2026 © SURAKSHA AI • PUBLIC SAFETY PLATFORM</div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

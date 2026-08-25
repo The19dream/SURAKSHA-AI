@@ -1,0 +1,6 @@
+{
+  "name": "Suraksha AI — Digital Public Safety Platform",
+  "description": "Hackathon prototype for defeating counterfeiting, fraud, and digital arrest scams in India using a multi-agent safety pipeline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

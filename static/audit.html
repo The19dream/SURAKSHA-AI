@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Audit Trail — Suraksha AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="relative min-h-screen flex flex-col overflow-x-hidden bg-[#0A0D14] text-slate-200 selection:bg-blue-500/30 selection:text-white">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl"></div>
+    <div class="absolute top-24 -right-24 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="absolute bottom-[-8rem] left-[-6rem] h-[30rem] w-[30rem] rounded-full bg-emerald-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 border-b border-white/10 bg-[#0A0D14]/90 shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[72px] items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="grid h-11 w-11 place-items-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-bold text-white shadow-[0_0_30px_rgba(59,130,246,0.22)]">
+            S
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white font-display">SURAKSHA <span class="text-blue-400 font-mono text-base sm:text-lg">AI</span></h1>
+            <span class="text-[9px] font-mono text-slate-500 tracking-[0.28em] uppercase font-bold">Digital Public Safety Command</span>
+          </div>
+          <div class="hidden md:block h-5 w-px bg-white/10 mx-2"></div>
+          <span class="hidden md:inline-flex items-center rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold text-blue-200 shadow-sm">
+            v1.0.4-PROTOTYPE
+          </span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur">
+          <a href="index.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Dashboard</a>
+          <a href="scam.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Scam Checker</a>
+          <a href="note.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Banknote Vision</a>
+          <a href="map.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Hotspot Map</a>
+          <a href="report.html" class="rounded-full px-3 py-2 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white">Guided Reporting</a>
+          <a href="audit.html" class="rounded-full bg-blue-500/15 px-3 py-2 text-sm text-white shadow-sm">Audit Trail</a>
+        </div>
+
+        <div class="tooltip tooltip-left" data-tip="Audit node is online.">
+          <div class="flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 shadow-[0_0_20px_rgba(59,130,246,0.12)]">
+            <div class="h-2.5 w-2.5 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.9)] animate-pulse"></div>
+            <span class="text-[10px] font-mono text-blue-200 uppercase tracking-[0.28em] font-bold">Audit Node Active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Audit Table Area -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">
+    <div class="mb-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-blue-200">
+            <span class="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
+            Cybersecurity Investigation Dashboard
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white font-display leading-tight">
+            System Audit Trail
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm sm:text-base leading-7 text-slate-300">
+            Read-only transactional database log capturing pipeline runs, classifications, confidence levels, and safety thresholds for every Suraksha AI decision.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3 lg:w-[28rem]">
+          <div class="stats border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="stat p-4">
+              <div class="stat-title text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Logs</div>
+              <div class="stat-value text-2xl text-white">Active</div>
+              <div class="stat-desc text-blue-300">Secure audit stream</div>
+            </div>
+          </div>
+          <div class="stats border border-emerald-400/15 bg-emerald-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="stat p-4">
+              <div class="stat-title text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Integrity</div>
+              <div class="stat-value text-2xl text-white">Locked</div>
+              <div class="stat-desc text-emerald-300">Hash signatures protected</div>
+            </div>
+          </div>
+          <div class="stats border border-amber-400/15 bg-amber-500/10 shadow-lg shadow-black/20 backdrop-blur-xl">
+            <div class="stat p-4">
+              <div class="stat-title text-[10px] font-mono uppercase tracking-[0.28em] text-amber-200">Latency</div>
+              <div class="stat-value text-2xl text-white">12ms</div>
+              <div class="stat-desc text-amber-300">Live query response</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+      <div class="xl:col-span-4 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+          <div class="card-body gap-5 p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white font-display">Audit Controls</h2>
+                <p class="mt-2 text-sm text-slate-300 leading-6">
+                  Search and filter the secure log stream to inspect classifications, confidence levels, and timeline context.
+                </p>
+              </div>
+              <div class="tooltip tooltip-left" data-tip="The table below is still driven by the existing JavaScript data binding.">
+                <span class="badge badge-primary badge-outline rounded-full px-3 py-3 font-mono uppercase tracking-[0.24em] text-[10px]">Read Only</span>
+              </div>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
+              <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Rows Scanned</div>
+                  <div class="mt-2 text-2xl font-black text-white">1,284</div>
+                  <div class="mt-2"><progress class="progress progress-primary h-3 w-full rounded-full bg-white/10" value="78" max="100"></progress></div>
+                </div>
+              </div>
+              <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">High Risk Events</div>
+                  <div class="mt-2 text-2xl font-black text-white">112</div>
+                  <div class="text-xs text-rose-300 mt-1">Critical classifications highlighted</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search bar -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Search</h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Timeline query</span>
+                </div>
+                <label class="input input-bordered flex items-center gap-2 rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus-within:border-blue-500/60 focus-within:ring-2 focus-within:ring-blue-500/15">
+                  <i data-lucide="search" class="h-4 w-4 text-slate-400"></i>
+                  <input type="text" class="grow bg-transparent outline-none placeholder:text-slate-500" placeholder="Search by hash, verdict, or risk level" />
+                </label>
+              </div>
+            </div>
+
+            <!-- Filter controls -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Filter Controls</h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Refine</span>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
+                  <div class="form-control">
+                    <label class="label"><span class="label-text text-xs uppercase tracking-[0.22em] text-slate-500 font-mono">Risk Level</span></label>
+                    <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                      <option>All Risk Levels</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label class="label"><span class="label-text text-xs uppercase tracking-[0.22em] text-slate-500 font-mono">Verdict</span></label>
+                    <select class="select select-bordered w-full rounded-2xl border-white/10 bg-slate-950/60 text-slate-200 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/15">
+                      <option>All Verdicts</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="badge badge-error badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">High Risk</span>
+                  <span class="badge badge-warning badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Medium</span>
+                  <span class="badge badge-success badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em]">Safe</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI verdict cards -->
+            <div class="grid gap-3">
+              <div class="alert border border-emerald-400/15 bg-emerald-500/10 text-emerald-100 shadow-sm">
+                <i data-lucide="shield-check" class="h-5 w-5"></i>
+                <div>
+                  <h4 class="text-sm font-bold uppercase tracking-[0.24em] font-mono">Verified Events</h4>
+                  <p class="text-xs text-emerald-50/80 mt-1">Confidence and verdict data are stored with tamper-resistant logging.</p>
+                </div>
+              </div>
+              <div class="alert border border-rose-400/15 bg-rose-500/10 text-rose-100 shadow-sm">
+                <i data-lucide="shield-alert" class="h-5 w-5"></i>
+                <div>
+                  <h4 class="text-sm font-bold uppercase tracking-[0.24em] font-mono">Escalations</h4>
+                  <p class="text-xs text-rose-50/80 mt-1">High-risk entries are highlighted for immediate investigation.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Loading animation while logs are loading -->
+            <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="card-body gap-4 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Loading State</h3>
+                  <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">Live Sync</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0A0D14]/60 px-4 py-3 text-sm text-slate-300">
+                  <span class="loading loading-spinner loading-sm text-blue-400"></span>
+                  Loading secure logs database...
+                </div>
+              </div>
+            </div>
+
+            <!-- Empty-state illustration -->
+            <div class="card border border-white/10 bg-white/5 shadow-sm">
+              <div class="card-body flex flex-col items-center justify-center gap-4 p-6 text-center">
+                <div class="grid h-20 w-20 place-items-center rounded-[1.75rem] border border-white/10 bg-slate-950/60 text-slate-400 shadow-[0_12px_30px_rgba(2,6,23,0.35)]">
+                  <i data-lucide="folder-search" class="h-10 w-10 text-blue-300"></i>
+                </div>
+                <div class="max-w-sm">
+                  <h3 class="text-lg font-bold text-white font-display">Audit entries appear here</h3>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">If no logs are available, the table will display the secure empty-state generated by the existing JavaScript.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xl:col-span-8 flex flex-col gap-6">
+        <div class="card border border-white/10 bg-white/5 shadow-[0_18px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl overflow-hidden">
+          <div class="card-body gap-4 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white font-display">Audit Log Table</h2>
+                <p class="mt-2 text-sm text-slate-300 leading-6">The table below remains data-driven and is populated exclusively by the existing audit logging script.</p>
+              </div>
+              <div class="tooltip tooltip-left" data-tip="The audit table is read-only and updates from the existing app.js binding.">
+                <span class="badge badge-outline rounded-full px-3 py-3 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300 border-white/10 bg-white/5">5-column log</span>
+              </div>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="card border border-white/10 bg-slate-950/45 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Secure Rows</div>
+                  <div class="mt-2 text-2xl font-black text-white">Live</div>
+                  <div class="text-xs text-blue-300 mt-1">Read-only ledger</div>
+                </div>
+              </div>
+              <div class="card border border-emerald-400/15 bg-emerald-500/10 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-emerald-200">Confidence</div>
+                  <div class="mt-2 text-2xl font-black text-white">Tracked</div>
+                  <div class="text-xs text-emerald-300 mt-1">Per-entry score preserved</div>
+                </div>
+              </div>
+              <div class="card border border-amber-400/15 bg-amber-500/10 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-[10px] font-mono uppercase tracking-[0.28em] text-amber-200">Timestamp</div>
+                  <div class="mt-2 text-2xl font-black text-white">IST</div>
+                  <div class="text-xs text-amber-300 mt-1">Investigation-ready</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Log Table card -->
+            <div class="rounded-[2rem] overflow-hidden border border-white/10 bg-slate-950/45 shadow-sm">
+              <div class="overflow-x-auto">
+                <table class="table table-zebra w-full text-left">
+                  <thead class="bg-[#0A0D14]/70">
+                    <tr class="border-b border-white/10 text-slate-400 font-mono text-[11px] font-bold tracking-[0.28em] uppercase">
+                      <th class="px-6 py-4">Timestamp (IST)</th>
+                      <th class="px-6 py-4">Input Hash</th>
+                      <th class="px-6 py-4">Assessed Verdict</th>
+                      <th class="px-6 py-4">Risk Level</th>
+                      <th class="px-6 py-4">Confidence</th>
+                    </tr>
+                  </thead>
+                  <tbody id="audit-table-body" class="divide-y divide-white/5 bg-[#0A0D14]/30">
+                    <!-- Loading spinner placeholder -->
+                    <tr>
+                      <td colspan="5" class="px-6 py-12 text-center text-sm text-slate-500 font-mono">
+                        <div class="flex items-center justify-center gap-3">
+                          <span class="loading loading-spinner loading-sm text-blue-400"></span>
+                          <span>Loading secure logs database...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#0A0D14]/60 p-4">
+              <div class="text-xs text-slate-400 leading-6">
+                Showing encrypted investigation records with read-only integrity controls.
+              </div>
+              <div class="join">
+                <button class="btn btn-sm join-item rounded-l-2xl border-white/10 bg-white/5 text-slate-200 hover:bg-white/10">Prev</button>
+                <button class="btn btn-sm join-item border-white/10 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20">1</button>
+                <button class="btn btn-sm join-item rounded-r-2xl border-white/10 bg-white/5 text-slate-200 hover:bg-white/10">Next</button>
+              </div>
+            </div>
+
+            <div class="divider divider-info before:bg-white/10 after:bg-white/10 text-slate-400 uppercase tracking-[0.28em] text-[10px] font-mono">Investigation Notes</div>
+
+            <div class="alert border border-blue-400/15 bg-blue-500/10 text-blue-100 shadow-sm">
+              <i data-lucide="info" class="h-5 w-5"></i>
+              <div class="text-xs leading-6 text-blue-50/80">
+                <strong class="text-blue-100">Audit trail behavior is unchanged.</strong> The script still clears and rebuilds <span class="font-mono text-blue-200">audit-table-body</span> with loading, empty, error, and log rows.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="border-t border-white/10 bg-[#0A0D14]/90 py-6 mt-auto backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-mono tracking-[0.22em] uppercase">
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        <span>AUDIT LOG: [ACTIVE]</span>
+        <span>AUTH AGENTS: [4/4 READY]</span>
+        <span>LATENCY: 12ms</span>
+      </div>
+      <div class="text-slate-400">2026 © SURAKSHA AI • PUBLIC SAFETY PLATFORM</div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
