@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "python3 -m uvicorn main:app --port 3000 --host 0.0.0.0",
-    "build": "echo 'Static app - no build step required'",
+    "build": "rm -rf dist && cp -r static dist",
     "preview": "python3 -m uvicorn main:app --port 3000 --host 0.0.0.0",
     "clean": "rm -rf dist",
     "lint": "echo 'No lint step required'"

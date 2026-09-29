@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# The HTML pages reference assets under /static/ (the path FastAPI serves them from),
+# while the build publishes the static folder at the site root.
+[[redirects]]
+  from = "/static/*"
+  to = "/:splat"
+  status = 200
