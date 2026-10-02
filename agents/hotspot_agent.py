@@ -1,27 +1,10 @@
-import os
-import json
-import importlib
+from llm_providers import LLMResponseError
 
-from google import genai
-
-from .base_agent import BaseAgent, AgentResult, RiskLevel
-
-try:
-    load_dotenv = importlib.import_module("dotenv").load_dotenv
-except Exception:
-    # Fallback keeps the agent functional even if dotenv is unavailable.
-    def load_dotenv(*args, **kwargs):
-        return False
-
-load_dotenv()
+from .base_agent import AgentResult
+from .llm_agent import LLMAgent, build_agent_result
 
 
-class HotspotAgent(BaseAgent):
-
-    def __init__(self):
-        self.client = genai.Client(
-            api_key=os.getenv("GEMINI_API_KEY")
-        )
+class HotspotAgent(LLMAgent):
 
     @property
     def name(self) -> str:
@@ -70,15 +53,10 @@ Return exactly in this format:
 }}
 """
 
-        response = self.client.models.generate_content(
-            model="models/gemini-3.1-flash-lite",
-            contents=prompt
-        )
-
-        raw_text = response.text or ""
         try:
-            result = json.loads(raw_text)
-        except json.JSONDecodeError:
+            result = await self.llm.generate_json(prompt)
+        except LLMResponseError as exc:
+            raw_text = exc.raw_text
             result = {
                 "verdict": "Unable to parse hotspot analysis response",
                 "risk_level": "NEEDS_REVIEW",
@@ -95,15 +73,4 @@ Return exactly in this format:
                 ]
             }
 
-        risk_value = str(result.get("risk_level", "NEEDS_REVIEW")).upper()
-        risk_level = RiskLevel[risk_value] if risk_value in RiskLevel.__members__ else RiskLevel.NEEDS_REVIEW
-
-        return AgentResult(
-            verdict=str(result.get("verdict", "Analysis unavailable")),
-            risk_level=risk_level,
-            confidence=float(result.get("confidence", 0.0)),
-            reasons=list(result.get("reasons", [])),
-            evidence=dict(result.get("evidence", {})),
-            next_steps=list(result.get("next_steps", [])),
-            agent_name=self.name
-        )
+        return build_agent_result(result, self.name)

@@ -1,20 +1,7 @@
-import os
-import json
-
-from dotenv import load_dotenv
-from google import genai
-
-from .base_agent import BaseAgent, AgentResult, RiskLevel
-
-load_dotenv()
+from .llm_agent import LLMAgent, build_agent_result
 
 
-class SurakshaAgent(BaseAgent):
-
-    def __init__(self):
-        self.client = genai.Client(
-            api_key=os.getenv("GEMINI_API_KEY")
-        )
+class SurakshaAgent(LLMAgent):
 
     @property
     def name(self):
@@ -63,19 +50,6 @@ Format:
 }}
 """
 
-        response = self.client.models.generate_content(
-            model="models/gemini-3.1-flash-lite",
-            contents=prompt
-        )
+        result = await self.llm.generate_json(prompt)
 
-        result = json.loads(response.text)
-
-        return AgentResult(
-            verdict=result["verdict"],
-            risk_level=RiskLevel[result["risk_level"]],
-            confidence=result["confidence"],
-            reasons=result["reasons"],
-            evidence=result["evidence"],
-            next_steps=result["next_steps"],
-            agent_name=self.name
-        )
+        return build_agent_result(result, self.name)
